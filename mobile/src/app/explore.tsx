@@ -471,7 +471,7 @@ const styles = StyleSheet.create({
     gap: Spacing.three,
   },
   sectionHeader: {
-    alignItems: "flex-end",
+    alignItems: "center",
     justifyContent: "space-between",
   },
   list: {
