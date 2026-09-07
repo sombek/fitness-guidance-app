@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#214c3c">
+<meta name="description" content="Fitness Guidance App — Phase 1 stakeholder presentation and scope discussion draft.">
+<title>Fitness Guidance App · Phase 1</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23214c3c'/%3E%3Cpath d='M12 29V11h17M12 19h13' fill='none' stroke='%23f5f2e9' stroke-width='4'/%3E%3C/svg%3E">
+<style>
+:root{--paper:#f5f2e9;--ink:#213c31;--green:#214c3c;--muted:#626b60;--line:#d5dacd;--lime:#dce9b9;--ochre:#8b4e22;--wash:#eaece0;--sans:"Avenir Next",Avenir,"Trebuchet MS",sans-serif;--display:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button,a{-webkit-tap-highlight-color:transparent}
+button{font:inherit;cursor:pointer}
+a{color:inherit;text-underline-offset:4px}
+button:focus-visible,a:focus-visible{outline:3px solid var(--ochre);outline-offset:5px}
+button:disabled{opacity:.35;cursor:default}
+[hidden]{display:none!important}
+.skip{position:fixed;top:-100px;left:20px;padding:10px 18px;background:var(--green);color:var(--paper);z-index:10}
+.skip:focus{top:12px}
+.shell{width:min(1440px,100%);margin:auto}
+.topbar{min-height:88px;padding:20px 4%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-size:14px;font-weight:700;line-height:1.25}
+.mark{display:grid;place-items:center;background:var(--green);color:var(--paper);height:37px;width:37px;font-family:var(--display);font-size:26px;font-style:italic}
+.brand small{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.16em;font-weight:500;margin-top:4px;color:var(--muted)}
+.toolbar{display:flex;align-items:center;gap:24px}
+.view-switch{display:flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:5px}
+.view-switch a{font-size:12px;font-weight:700;text-decoration:none;padding:7px 15px;border-radius:3px;color:var(--muted)}
+.view-switch a[aria-current="page"]{background:var(--green);color:var(--paper)}
+.print-button{background:transparent;border:0;padding:8px 0;font-size:12px;font-weight:700;border-bottom:1px solid var(--ink)}
+.deck{padding:26px 4% 0}
+.slide{min-height:640px;min-height:min(710px,calc(100svh - 195px));padding:38px 42px 28px;display:flex;flex-direction:column;border:1px solid var(--line);position:relative;overflow:hidden;animation:arrive .3s ease-out}
+.slide-top,.slide-bottom{display:flex;justify-content:space-between;gap:16px;align-items:center;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.slide-top{margin-bottom:28px}
+.slide-bottom{margin-top:auto;padding-top:24px;letter-spacing:.06em;color:var(--muted);font-size:9px}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.16em;font-weight:700;margin:0 0 14px}
+.tag{display:inline-block;border:1px solid currentColor;border-radius:3px;padding:4px 8px;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+h1,h2,h3,p{margin-top:0}
+h1,h2{font-family:var(--display);font-weight:500;letter-spacing:-.055em;line-height:1.04}
+h1{font-size:clamp(48px,5.6vw,80px);margin-bottom:22px}
+h2{font-size:clamp(38px,4.4vw,62px);margin-bottom:18px}
+h3{font-size:20px;letter-spacing:-.035em;line-height:1.25;margin-bottom:12px}
+p{margin-bottom:16px}
+.lead{font-size:17px;line-height:1.65;max-width:620px;color:var(--muted)}
+.hero{background:var(--green);color:var(--paper);border-color:var(--green)}
+.hero .slide-top{color:#d2dccd}
+.hero .slide-bottom{color:#ced9cd}
+.hero-grid{display:grid;grid-template-columns:1.18fr 1fr;align-items:center;gap:40px;flex:1}
+.hero .lead{color:#dbe2d3;font-size:16px;max-width:425px}
+.hero h1 em{color:var(--lime);font-style:italic}
+.hero .eyebrow{color:var(--lime)}
+.platforms{display:flex;gap:30px;margin-top:32px;padding-top:20px;border-top:1px solid #65816d;max-width:425px}
+.platforms strong{font-size:13px;display:block}
+.platforms span{font-size:11px;color:#ced9cd}
+.track{min-height:355px;position:relative;display:grid;align-content:center;justify-items:center;padding:36px 20px;text-align:center}
+.track svg{position:absolute;width:100%;height:100%;inset:0;opacity:.65}
+.track .track-copy{position:relative;background:var(--green);padding:20px 24px}
+.track .track-copy span{display:block;font-size:12px;letter-spacing:.17em;text-transform:uppercase;color:var(--lime);margin-bottom:10px}
+.track .track-copy strong{display:block;font-family:var(--display);font-weight:400;font-size:49px;line-height:1.15;letter-spacing:-.05em}
+.track-caption{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#dbe2d3;position:relative;background:var(--green);padding:5px 14px;margin:18px 0 0}
+.headline-row{display:flex;justify-content:space-between;gap:30px;align-items:flex-end;margin-bottom:18px}
+.headline-row h2{margin-bottom:0}
+.headline-note{max-width:260px;font-size:12px;color:var(--muted);margin-bottom:3px}
+.feature-row{display:grid;grid-template-columns:50px 170px 1fr;gap:20px;border-top:1px solid var(--line);padding:19px 0;align-items:start}
+.feature-number{font-family:var(--display);font-size:32px;line-height:1.1;color:#78907a}
+.feature-row h3{margin:3px 0;font-size:22px}
+.feature-row p{font-size:14px;line-height:1.6;max-width:650px;margin:0}
+.foundation{background:var(--wash);padding:16px 20px;display:flex;gap:24px;align-items:baseline;font-size:12px;margin-top:10px}
+.foundation strong{white-space:nowrap}
+.scope-note{font-size:11px;color:var(--ochre);margin:14px 0 0}
+.roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin:28px 0 30px}
+.milestone{border-top:2px solid var(--green);padding-top:18px}
+.step{font-family:var(--display);font-size:42px;letter-spacing:-.06em;color:#78907a;margin-bottom:16px;display:block}
+.milestone h3{font-size:22px}
+.milestone p{font-size:13px;line-height:1.65;color:var(--muted);margin-bottom:14px}
+.gate{font-size:11px;line-height:1.55;display:block;border-top:1px solid var(--line);padding-top:12px;font-weight:600}
+.success-bar{display:flex;gap:22px;align-items:baseline;background:var(--green);color:var(--paper);padding:19px 22px;font-size:13px}
+.success-bar strong{font-size:10px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;color:var(--lime)}
+.decision-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:60px;margin-top:20px;flex:1}
+.decision-list{list-style:none;padding:0;margin:0}
+.decision-list li{border-top:1px solid var(--line);padding:13px 0;display:grid;grid-template-columns:22px 1fr;gap:12px;font-size:14px}
+.decision-list li span{color:var(--ochre);font-size:11px;padding-top:3px}
+.later{border-left:1px solid var(--line);padding-left:32px}
+.later ul{list-style:none;margin:0;padding:0}
+.later li{font-family:var(--display);font-size:25px;letter-spacing:-.03em;padding:9px 0;border-bottom:1px solid var(--line)}
+.later p{font-size:12px;color:var(--muted);margin-top:20px}
+.scope-link{font-size:12px;font-weight:700;display:inline-block;margin-top:20px}
+.deck-nav{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:20px 0 24px}
+.slide-links{display:flex;gap:26px}
+.slide-links a{font-size:10px;letter-spacing:.06em;text-decoration:none;color:var(--muted);padding:4px 0;border-bottom:2px solid transparent}
+.slide-links a[aria-current="step"]{border-color:var(--green);color:var(--green);font-weight:700}
+.nav-controls{display:flex;align-items:center;gap:16px}
+.nav-controls button{background:none;border:1px solid var(--line);width:34px;height:34px;color:var(--ink);font-size:18px;line-height:1}
+.slide-count{font-size:11px;font-variant-numeric:tabular-nums;min-width:42px;text-align:center}
+.keyboard-hint{font-size:10px;color:var(--muted)}
+.scope{max-width:1060px;margin:0 auto;padding:64px 40px 80px}
+.scope-intro{border-bottom:2px solid var(--green);padding-bottom:30px;margin-bottom:32px}
+.scope-intro h1{font-size:62px;margin:16px 0 20px}
+.scope-intro .lead{max-width:760px}
+.scope-status{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:11px;color:var(--muted)}
+.scope-status .tag{color:var(--ochre)}
+.scope-nav{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:12px;margin-bottom:44px}
+.scope-section{margin:0 0 46px;scroll-margin-top:24px}
+.section-label{display:flex;gap:16px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:20px}
+.section-label span{font-family:var(--display);color:#78907a;font-size:23px}
+.scope h2{font-size:33px;letter-spacing:-.035em;margin:0}
+.scope h3{font-size:16px;margin:20px 0 10px}
+.scope p,.scope li{font-size:14px}
+.scope ul,.scope ol{padding-left:20px;margin:12px 0 18px}
+.scope li{margin-bottom:7px}
+.scope-columns{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.scope-columns h3:first-child{margin-top:0}
+.callout{background:var(--wash);padding:17px 20px;margin-top:18px;font-size:13px}
+.callout p:last-child{margin-bottom:0}
+.open{background:#eee5d5;color:#68401e}
+.open strong{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
+.scope table{width:100%;border-collapse:collapse;font-size:13px}
+.scope th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.06em;padding:12px 10px;background:var(--wash)}
+.scope td{padding:14px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.scope th:first-child,.scope td:first-child{padding-left:12px}
+.scope td:first-child{font-weight:600}
+.table-wrap{overflow-x:auto}
+.checklist{list-style:none;padding:0!important}
+.checklist li{padding:9px 0 9px 26px;position:relative;border-bottom:1px solid var(--line)}
+.checklist li:before{content:"";position:absolute;left:0;top:14px;width:11px;height:11px;border:1px solid #78907a}
+.scope-footer{padding-top:24px;border-top:2px solid var(--green);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;gap:24px}
+.scope-footer p{font-size:11px;margin:0}
+@keyframes arrive{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(min-width:1450px){.slide{min-height:710px}}
+@media(max-width:1050px){.slide{padding:30px;min-height:650px}.hero-grid{gap:20px}.track{min-height:310px}.track .track-copy strong{font-size:40px}.headline-row{display:block}.headline-note{max-width:none;margin-top:15px}.feature-row{grid-template-columns:36px 130px 1fr;gap:16px}.roadmap{gap:16px}.decision-grid{gap:30px}.keyboard-hint{display:none}.slide-links{gap:16px}}
+@media(max-width:700px){.topbar{padding:16px 5%;flex-wrap:wrap;gap:18px}.brand{font-size:12px}.toolbar{width:100%;justify-content:space-between;gap:16px}.view-switch{flex:1;max-width:260px}.view-switch a{flex:1;text-align:center}.deck{padding:16px 4% 0}.slide{min-height:0;padding:24px 22px}.slide-top{font-size:8px;margin-bottom:28px;letter-spacing:.08em}.slide-top .tag{font-size:8px}.hero-grid{grid-template-columns:1fr;gap:16px}.hero h1{font-size:52px}.hero .lead{font-size:15px}.platforms{gap:24px;margin-top:22px}.track{min-height:255px;margin-top:12px}.track .track-copy strong{font-size:35px}.track .track-copy{padding:12px 24px}.track .track-copy span{font-size:10px}.track-caption{margin:12px 0 0;font-size:9px}.slide-bottom{margin-top:20px;font-size:8px;align-items:flex-end;gap:20px}.slide-bottom span:first-child{max-width:75%}h2{font-size:40px}.headline-note{font-size:12px}.feature-row{grid-template-columns:30px 1fr;gap:8px 14px;padding:19px 0}.feature-row p{grid-column:2;font-size:13px}.feature-row h3{font-size:23px}.feature-number{font-size:29px}.foundation{display:block;padding:15px;font-size:12px}.foundation strong{display:block;margin-bottom:5px}.roadmap{grid-template-columns:1fr 1fr;gap:25px 18px;margin-top:22px}.step{font-size:33px;margin-bottom:10px}.milestone h3{font-size:20px}.milestone p{font-size:12px}.gate{font-size:10px}.success-bar{display:block;padding:16px;font-size:12px}.success-bar strong{display:block;margin-bottom:7px}.decision-grid{grid-template-columns:1fr;gap:30px}.decision-list li{font-size:13px}.later{border-left:0;border-top:1px solid var(--line);padding:20px 0 0}.later li{font-size:23px}.deck-nav{flex-wrap:wrap;gap:16px;padding:18px 2px}.slide-links{gap:16px;width:100%;justify-content:space-between}.slide-links a{font-size:9px}.nav-controls{margin-left:auto}.scope{padding:35px 6% 50px}.scope-intro h1{font-size:46px}.scope .lead{font-size:15px}.scope-columns{grid-template-columns:1fr;gap:12px}.scope table{font-size:12px;min-width:460px}.scope h2{font-size:28px}.scope-section{margin-bottom:35px}.scope-nav{gap:10px 18px}.scope-footer{display:block}.scope-footer p{margin-bottom:12px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.slide{animation:none}}
+@media print{
+@page{size:A4 landscape;margin:0}
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+html,body{margin:0!important;padding:0!important;scroll-behavior:auto;background:var(--paper)}
+.topbar,.deck-nav,.skip,.scope-nav,.scope-link,.no-print{display:none!important}
+.shell{width:100%;max-width:none}
+body[data-view="deck"] .deck{display:block!important;padding:0}
+body[data-view="deck"] .slide,body[data-view="deck"] .slide[hidden]{display:flex!important;animation:none;width:297mm;height:210mm;min-height:0;margin:0;padding:17mm 18mm 12mm;border:0;break-after:page;overflow:hidden}
+body[data-view="deck"] .slide:last-child{break-after:auto}
+body[data-view="deck"] .scope{display:none!important}
+.slide h1{font-size:62pt}.slide h2{font-size:43pt}.hero-grid{grid-template-columns:1.18fr 1fr}.hero .lead{font-size:13pt}.slide-top{font-size:8pt;margin-bottom:8mm}.slide-bottom{font-size:7pt;padding-top:6mm}.track{min-height:95mm}.track .track-copy strong{font-size:42pt}.feature-row{grid-template-columns:40px 155px 1fr;padding:6mm 0}.feature-row p{font-size:11pt}.headline-note{font-size:10pt}.headline-row{display:flex}.roadmap{grid-template-columns:repeat(4,1fr);gap:7mm;margin:10mm 0}.milestone p{font-size:10pt}.gate{font-size:9pt}.decision-grid{grid-template-columns:1.3fr 1fr;gap:16mm}.decision-list li{font-size:11pt;padding:5mm 0}.later{border-left:1px solid var(--line);border-top:0;padding:0 0 0 9mm}.later li{font-size:21pt}.success-bar{display:flex;font-size:11pt}.foundation{display:flex;font-size:10pt}.platforms{gap:8mm}.scope-note{font-size:9pt}.slide-links{display:none}
+body[data-view="scope"] .deck{display:none!important}
+body[data-view="scope"] .scope{display:block!important;max-width:none;padding:0;margin:0}
+.scope-intro{padding-bottom:6mm;margin-bottom:8mm}.scope-intro h1{font-size:34pt}.scope-intro .lead{font-size:12pt}.scope-section{margin-bottom:8mm}.scope h2{font-size:23pt}.scope h3{font-size:12pt}.scope p,.scope li{font-size:10pt}.scope table{min-width:0;font-size:9pt}.scope-columns{grid-template-columns:1fr 1fr;gap:8mm}.scope-status{font-size:9pt}.section-label{break-after:avoid;margin-bottom:4mm}.scope h3{break-after:avoid}.scope tr,.callout,.scope-footer,.checklist li{break-inside:avoid}.scope .table-wrap{overflow:visible}.scope-footer p{font-size:8pt}.scope a{text-decoration:none}
+}
+</style>
+<style id="print-page">@media print{@page{size:A4 landscape;margin:0}}</style>
+</head>
+<body data-view="deck">
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<header class="topbar">
+<a class="brand" href="#slide-1"><span class="mark" aria-hidden="true">f.</span><span>Fitness Guidance App<small>Phase 1 / Stakeholder draft</small></span></a>
+<div class="toolbar">
+<nav class="view-switch" aria-label="Document view"><a id="deck-tab" href="#slide-1" aria-current="page">Presentation</a><a id="scope-tab" href="#scope">Detailed scope</a></nav>
+<button class="print-button" id="print-button" type="button">Print slides / PDF ↗</button>
+</div>
+</header>
+<main id="main">
+<div class="deck" id="deck" aria-label="Four-slide roadmap">
+<section class="slide hero" id="slide-1" aria-labelledby="title-1">
+<div class="slide-top"><span>Fitness Guidance App / Phase 1</span><span class="tag">Discussion draft · v01</span></div>
+<div class="hero-grid">
+<div><p class="eyebrow">From spreadsheets to one platform</p><h1 id="title-1">Better guidance.<br><em>One place.</em></h1><p class="lead">Bring 50–100 active clients into a connected coaching routine. Plans, daily records, and progress—without maintaining a parallel spreadsheet.</p><div class="platforms"><div><strong>For clients</strong><span>A dedicated mobile app</span></div><div><strong>For coaches</strong><span>A focused web dashboard</span></div></div></div>
+<div class="track" aria-label="Training, Food, and Progress form one coaching cycle">
+<svg viewBox="0 0 420 410" fill="none" aria-hidden="true"><rect x="12" y="12" width="396" height="386" rx="193" stroke="#b9c9a9"/><rect x="31" y="31" width="358" height="348" rx="174" stroke="#b9c9a9"/><rect x="50" y="50" width="320" height="310" rx="155" stroke="#b9c9a9"/><path d="M210 12v57M351 348l-36-35M69 348l36-35" stroke="#dce9b9" stroke-width="3"/></svg>
+<div class="track-copy"><span>The coaching cycle</span><strong>Training.<br>Food.<br>Progress.</strong></div><p class="track-caption">Plan → Record → Review → Adjust</p>
+</div>
+</div>
+<div class="slide-bottom"><span>Replace the essential routine. Not every spreadsheet feature.</span><span>01 / 04</span></div>
+</section>
+<section class="slide" id="slide-2" aria-labelledby="title-2" hidden>
+<div class="slide-top"><span>02 / The essential scope</span><span class="tag">Client app + coach dashboard</span></div>
+<div class="headline-row"><h2 id="title-2">Built around<br>the real routine.</h2><p class="headline-note">Invite → Assign plans → Client records<br>Coach reviews → Adjust</p></div>
+<div class="feature-row"><span class="feature-number">01</span><h3>Training</h3><p>Coach-managed exercise library with video links, assigned training plans, and client workout-completion history.</p></div>
+<div class="feature-row"><span class="feature-number">02</span><h3>Food</h3><p>Proposed: coach-provided food catalog, client meal building and logging, and calculated calorie and macronutrient totals.</p></div>
+<div class="feature-row"><span class="feature-number">03</span><h3>Progress</h3><p>Dated weekly weight and measurement check-ins. Coaches review history alongside training and food records.</p></div>
+<div class="foundation"><strong>The foundation</strong><span>Email invitations · Assigned-coach access · Client profiles · Active-client data migration</span></div>
+<p class="scope-note">Food rules, saved recipes, exercise-weight logging, and exact check-in fields still need approval.</p>
+<div class="slide-bottom"><span>Grounded in an initial review of the existing 14-tab workbook.</span><span>02 / 04</span></div>
+</section>
+<section class="slide" id="slide-3" aria-labelledby="title-3" hidden>
+<div class="slide-top"><span>03 / Roadmap to launch</span><span class="tag">One phase. Four delivery stages.</span></div>
+<h2 id="title-3">Prove the routine.<br>Then bring everyone in.</h2>
+<div class="roadmap">
+<div class="milestone"><span class="step">01</span><h3>Confirm</h3><p>Agree essential fields, food rules, mobile platforms, and migration history.</p><span class="gate">Gate: stakeholder scope approval.</span></div>
+<div class="milestone"><span class="step">02</span><h3>Build</h3><p>Connect the client mobile app with the coach dashboard and shared libraries.</p><span class="gate">Gate: invite → plan → record → review works.</span></div>
+<div class="milestone"><span class="step">03</span><h3>Pilot</h3><p>Trial the migration and a full weekly coaching cycle with 5–10 clients, proposed.</p><span class="gate">Gate: agreed routine works without sheet updates.</span></div>
+<div class="milestone"><span class="step">04</span><h3>Roll out</h3><p>Resolve blockers, complete the remaining active-client migration, and send invitations.</p><span class="gate">Gate: migration approved; clients ready to onboard.</span></div>
+</div>
+<div class="success-bar"><strong>Success looks like</strong><span>Clients and coaches complete the agreed weekly routine in the app—not in two systems.</span></div>
+<div class="slide-bottom"><span>One-time migration. Original sheets retained. No ongoing synchronization.</span><span>03 / 04</span></div>
+</section>
+<section class="slide" id="slide-4" aria-labelledby="title-4" hidden>
+<div class="slide-top"><span>04 / Keep the first release focused</span><span class="tag">Decide now. Expand deliberately.</span></div>
+<h2 id="title-4">A clear boundary.<br>A useful first release.</h2>
+<div class="decision-grid"><div><p class="eyebrow">Confirm before development</p><ol class="decision-list"><li><span>01</span><div>Is workout completion enough, or is recording exercise weights essential?</div></li><li><span>02</span><div>Food targets, prescribed plans, coach recipes, and saved personal meals—which are required?</div></li><li><span>03</span><div>Which progress fields and active-client historical records must move?</div></li><li><span>04</span><div>Which mobile platforms and languages launch first?</div></li></ol><a class="scope-link" href="#scope-decisions">Open the stakeholder decision list →</a></div>
+<aside class="later"><p class="eyebrow">Later / Not committed</p><ul><li>Online payments</li><li>FatSecret integration</li><li>Photo calorie extraction</li><li>AI suggestions</li></ul><p>Future candidates—not a fixed sequence or a promise for the next release.</p></aside></div>
+<div class="slide-bottom"><span>Priority: reliable daily use and a successful transition for active clients.</span><span>04 / 04</span></div>
+</section>
+<nav class="deck-nav" aria-label="Slide navigation"><div class="slide-links"><a href="#slide-1" aria-current="step">01 · Purpose</a><a href="#slide-2">02 · Scope</a><a href="#slide-3">03 · Roadmap</a><a href="#slide-4">04 · Decisions</a></div><span class="keyboard-hint">Use ← → to navigate</span><div class="nav-controls"><button id="previous" type="button" aria-label="Previous slide" disabled>←</button><span class="slide-count" id="slide-count" aria-live="polite" aria-atomic="true">1 / 4</span><button id="next" type="button" aria-label="Next slide">→</button></div></nav>
+</div>
+<article class="scope" id="scope" aria-labelledby="scope-title" hidden>
+<header class="scope-intro"><div class="scope-status"><span class="tag">Stakeholder discussion draft</span><span>Version 01 · 6 September 2026</span></div><h1 id="scope-title">Phase 1.<br>The scope, clearly.</h1><p class="lead">Move the coaching business’s 50–100 existing active clients from spreadsheets into a client mobile app and a coach web dashboard, covering training, food, and progress.</p><p>This phase replaces the <strong>agreed coaching workflow</strong>, not every spreadsheet feature. The sections below combine agreed direction with explicitly marked proposals and decisions. They are not a final development commitment.</p></header>
+<nav class="scope-nav" aria-label="Scope sections"><a href="#scope-access">Users & access</a><a href="#scope-training">Training</a><a href="#scope-food">Food</a><a href="#scope-progress">Progress</a><a href="#scope-migration">Migration</a><a href="#scope-boundaries">Boundaries</a><a href="#scope-release">Release criteria</a><a href="#scope-decisions">Decisions</a></nav>
+<section class="scope-section" id="scope-access"><div class="section-label"><span>01</span><h2>Users, access & onboarding</h2></div><div class="table-wrap"><table><thead><tr><th scope="col">User</th><th scope="col">Platform</th><th scope="col">Access</th></tr></thead><tbody><tr><td>Head coach</td><td>Web dashboard</td><td>All clients; assigns clients to coaches and manages plans.</td></tr><tr><td>Coach</td><td>Web dashboard</td><td>Only assigned clients, their plans, and progress.</td></tr><tr><td>Client</td><td>Mobile app</td><td>Only their own plans and records.</td></tr></tbody></table></div><h3>Agreed foundation</h3><ul><li>Invitation-only registration by email; no public signup.</li><li>Client assignment and a consolidated view of training, food, and progress.</li></ul><h3>Proposed operational essentials</h3><p>Invitation status and resending, client search, reassignment, account recovery, and client-access deactivation.</p><div class="callout open"><strong>Decision required</strong><p>Launch on iOS, Android, or both? Arabic-first or bilingual? Confirm who can invite clients and maintain coach accounts.</p></div></section>
+<section class="scope-section" id="scope-training"><div class="section-label"><span>02</span><h2>Training</h2></div><div class="scope-columns"><div><h3>Coach dashboard</h3><ul><li>Browse the existing exercise library.</li><li>Create, update, and assign training plans using library exercises.</li><li>Review each client’s workout-completion history.</li><li>Proposed: basic add/edit controls to maintain the library.</li></ul></div><div><h3>Client mobile app</h3><ul><li>View the assigned plan and exercise instructions.</li><li>Open exercise video links.</li><li>Mark workouts complete.</li></ul></div></div><h3>Plan fields identified in the sheet</h3><p>Workout grouping/day, selected exercises, target muscle, prescribed rep range, sets, RIR (repetitions in reserve), instructions, and video links. Confirm these as the minimum plan fields.</p><p><strong>Boundary:</strong> externally hosted video links only. No video uploading or hosting.</p><div class="callout open"><strong>Decision required</strong><p>The sheet contains weekly exercise-weight entries. Completion-only remains the baseline; confirm whether weight recording is essential to leaving the spreadsheet. Also confirm reusable plan templates versus individually assembled plans. Cardio logging is not included in this draft.</p></div></section>
+<section class="scope-section" id="scope-food"><div class="section-label"><span>03</span><h2>Food</h2></div><p><strong>Working proposal—subject to coach confirmation.</strong> The workbook connects individual foods, coach recipes, and personal recipes to daily logging.</p><div class="scope-columns"><div><h3>Coach dashboard</h3><ul><li>Access and maintain the existing food catalog.</li><li>View client meal records and nutrition totals.</li><li>Provide food guidance; targets, prescribed plans, or both remain open.</li></ul></div><div><h3>Client mobile app</h3><ul><li>Select catalog foods and quantities.</li><li>Build and log breakfast, lunch, dinner, and snacks.</li><li>See calculated calories, protein, carbohydrates, and fat.</li><li>Review daily nutrition totals.</li></ul></div></div><div class="callout open"><strong>Decisions required</strong><p>Confirm food guidance, the coach recipe library, and saving/reusing personal meals. Confirm catalog-maintenance permissions, quantity units, and how freely clients can adjust meals.</p></div><p style="margin-top:16px"><strong>Boundary:</strong> no external food database, photo recognition, or client-created food records in the initial proposal. Creating a meal from catalog foods is distinct from adding a new food to the catalog.</p></section>
+<section class="scope-section" id="scope-progress"><div class="section-label"><span>04</span><h2>Progress</h2></div><div class="scope-columns"><div><h3>Client mobile app</h3><ul><li>Submit dated weekly check-ins.</li><li>Record weight and agreed body measurements.</li><li>Add a short note, proposed.</li></ul></div><div><h3>Coach dashboard</h3><ul><li>Review check-in history and changes over time.</li><li>Review workout completion and food records alongside check-ins.</li><li>Use the records to adjust client plans.</li></ul></div></div><p><strong>Measurement fields found:</strong> chest, abdomen 5 cm above and below the navel, waist at the navel, hips, right and left thigh, and arm/biceps.</p><div class="callout open"><strong>Decision required</strong><p>Confirm which measurements are essential. Manual steps, workout-performance ratings, and lifestyle self-assessments exist in the sheet but are not automatically included.</p></div></section>
+<section class="scope-section" id="scope-migration"><div class="section-label"><span>05</span><h2>Active-client migration</h2></div><p><strong>Included in Phase 1.</strong> Migrate only clients on a coach-approved active-client list. One workbook does not establish the complete client inventory or coach assignments.</p><ol><li>Review source sheets and approve field mappings.</li><li>Import approved shared libraries without duplicating them per client.</li><li>Import agreed active-client data and assign it to the correct coach.</li><li>Validate counts, relationships, nutrition calculations, and video links.</li><li>Resolve missing or invalid records, or obtain explicit acceptance of exceptions.</li><li>Complete the final transfer before inviting migrated clients.</li></ol><h3>Preparation identified in the first-pass review</h3><ul><li>Confirm per-food nutrition units; some stored values appear per gram despite a per-100-gram header.</li><li>Extract embedded video URLs rather than just visible exercise names.</li><li>Identify test rows, invalid dates, duplicate entries, and incomplete records.</li><li>Map name-based relationships to stable identifiers.</li><li>Check whether other client workbooks follow this template.</li></ul><div class="callout open"><strong>Decision required</strong><p>Current plans and latest measurements only, or additional historical records? Agree the source of truth, who prepares the data, and the final cutover process.</p></div><p style="margin-top:16px">Original sheets remain unchanged as a reference. Inactive-client migration and ongoing Google Sheets synchronization are excluded.</p></section>
+<section class="scope-section" id="scope-boundaries"><div class="section-label"><span>06</span><h2>Protect the first release</h2></div><div class="scope-columns"><div><h3>Explicitly outside Phase 1</h3><ul><li>Online payments.</li><li>FatSecret integration.</li><li>Photo-based calorie extraction.</li><li>AI suggestions.</li><li>In-app chat.</li><li>Individual set-by-set workout logging.</li><li>Progress-photo workflows and detailed cardio logging.</li><li>Wearable integrations and automatic step collection.</li><li>Inactive-client migration and ongoing sheet synchronization.</li></ul></div><div><h3>Not exclusions; pending decisions</h3><p>Exercise-weight recording, coach recipes, saved personal meals, manual steps, additional check-in fields, reusable plan templates, and the amount of migration history.</p><div class="callout"><p><strong>One coaching business.</strong> Multiple coaches share the platform with assigned-client access. A multi-business SaaS platform is not part of this draft.</p></div><h3>Later, based on actual use</h3><p>Payments, FatSecret, photo calorie extraction, and AI suggestions are future candidates—not a fixed sequence or commitments for the next release.</p></div></div></section>
+<section class="scope-section" id="scope-roadmap"><div class="section-label"><span>07</span><h2>Delivery & rollout</h2></div><div class="table-wrap"><table><thead><tr><th scope="col">Stage</th><th scope="col">Deliverable</th><th scope="col">Exit condition</th></tr></thead><tbody><tr><td>Confirm</td><td>Approved workflows, fields, platforms, and migration boundaries.</td><td>Stakeholder scope approval.</td></tr><tr><td>Build</td><td>Connected client app and coach dashboard.</td><td>Invite → assign → record → review works end to end.</td></tr><tr><td>Pilot</td><td>Trial migration with a proposed 5–10 active clients.</td><td>One weekly coaching cycle works without sheet updates for agreed activities.</td></tr><tr><td>Roll out</td><td>Remaining active clients migrated and invited.</td><td>Blocking issues resolved; migration approved.</td></tr></tbody></table></div></section>
+<section class="scope-section" id="scope-release"><div class="section-label"><span>08</span><h2>Release acceptance criteria</h2></div><p>These are release checks—not claims that the application has been built or verified.</p><ul class="checklist"><li>Clients can register through email invitations.</li><li>Clients cannot access other clients’ data; coaches cannot access unassigned clients.</li><li>Assigned plans and updates appear for the correct client.</li><li>Client records persist and are visible to the assigned coach.</li><li>Nutrition calculations match coach-approved examples, including quantity units.</li><li>Agreed active-client data is imported accurately, with exceptions resolved or accepted.</li><li>The pilot completes the agreed weekly routine without maintaining a parallel spreadsheet.</li></ul></section>
+<section class="scope-section" id="scope-decisions"><div class="section-label"><span>09</span><h2>Decisions for the meeting</h2></div><ol><li><strong>Validate the source:</strong> is this the current working template or a demonstration copy with older/test sections?</li><li><strong>Training:</strong> is exercise-weight recording essential, and are reusable plans needed?</li><li><strong>Food:</strong> targets, prescribed plans, recipe library, and saved personal meals—which are required?</li><li><strong>Progress:</strong> which measurements and optional daily/check-in fields are actively reviewed?</li><li><strong>Platforms:</strong> iOS, Android, or both; Arabic-first or bilingual?</li><li><strong>Migration:</strong> approve the active-client list, coach mapping, authoritative sources, history depth, and preparation owner.</li></ol><div class="callout"><p><strong>Meeting outcome:</strong> approve the essential scope and resolve the open decisions before committing to development.</p></div></section>
+<footer class="scope-footer"><p>Fitness Guidance App · Phase 1 · Discussion draft v01</p><p>Based on project discussions and an initial 14-tab workbook review.<br>Not a full data audit; bound scripts and history-saving behavior were not inspected.</p></footer>
+</article>
+</main>
+</div>
+<noscript><style>.slide[hidden]{display:flex!important}.scope[hidden]{display:block!important}.deck-nav,.print-button{display:none!important}</style><p style="padding:24px">JavaScript is disabled. All slides and the detailed scope are displayed below each other.</p></noscript>
+<script>
+(() => {
+  const slides = [...document.querySelectorAll('.slide')];
+  const deck = document.getElementById('deck');
+  const scope = document.getElementById('scope');
+  const previous = document.getElementById('previous');
+  const next = document.getElementById('next');
+  const count = document.getElementById('slide-count');
+  const printButton = document.getElementById('print-button');
+  let current = 0;
+  function render() {
+    const hash = location.hash.slice(1);
+    const scopeView = hash === 'scope' || hash.startsWith('scope-');
+    const match = /^slide-([1-4])$/.exec(hash);
+    if (match) current = Number(match[1]) - 1;
+    document.body.dataset.view = scopeView ? 'scope' : 'deck';
+    deck.hidden = scopeView;
+    scope.hidden = !scopeView;
+    slides.forEach((slide, index) => { slide.hidden = index !== current; });
+    document.querySelectorAll('.slide-links a').forEach((link, index) => {
+      if (index === current) link.setAttribute('aria-current', 'step');
+      else link.removeAttribute('aria-current');
+    });
+    document.getElementById('deck-tab').toggleAttribute('aria-current', !scopeView);
+    document.getElementById('scope-tab').toggleAttribute('aria-current', scopeView);
+    document.querySelector('.view-switch [aria-current]').setAttribute('aria-current', 'page');
+    previous.disabled = current === 0;
+    next.disabled = current === slides.length - 1;
+    count.textContent = `${current + 1} / ${slides.length}`;
+    printButton.textContent = scopeView ? 'Print scope / PDF ↗' : 'Print slides / PDF ↗';
+    document.getElementById('print-page').textContent = scopeView
+      ? '@media print{@page{size:A4 portrait;margin:16mm}}'
+      : '@media print{@page{size:A4 landscape;margin:0}}';
+    if (scopeView && hash !== 'scope') document.getElementById(hash)?.scrollIntoView();
+    else window.scrollTo(0, 0);
+  }
+  function go(index) {
+    location.hash = `slide-${Math.max(0, Math.min(slides.length - 1, index)) + 1}`;
+  }
+  previous.addEventListener('click', () => go(current - 1));
+  next.addEventListener('click', () => go(current + 1));
+  printButton.addEventListener('click', () => window.print());
+  document.addEventListener('keydown', event => {
+    if (document.body.dataset.view !== 'deck' || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || event.target.closest('input,textarea,select,[contenteditable="true"]')) return;
+    const destinations = {ArrowRight: current + 1, ArrowLeft: current - 1, Home: 0, End: slides.length - 1};
+    if (Object.hasOwn(destinations, event.key)) { event.preventDefault(); go(destinations[event.key]); }
+  });
+  window.addEventListener('hashchange', render);
+  render();
+})();
+</script>
+</body>
+</html>
