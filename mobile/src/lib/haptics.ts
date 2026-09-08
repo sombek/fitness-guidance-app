@@ -1,40 +1,58 @@
-import type { HapticFeedbackTypes, HapticOptions } from "react-native-haptic-feedback";
+import * as Haptics from "expo-haptics";
 
-export type HapticType = keyof typeof HapticFeedbackTypes;
+export type HapticType =
+  | "impactLight"
+  | "impactMedium"
+  | "impactHeavy"
+  | "rigid"
+  | "soft"
+  | "selection"
+  | "success"
+  | "warning"
+  | "error";
 
-type HapticModule = typeof import("react-native-haptic-feedback").default;
-
-let hapticModule: HapticModule | null = null;
-let hasTriedLoading = false;
-
-function getHapticModule(): HapticModule | null {
-  if (hasTriedLoading) return hapticModule;
-
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    hapticModule = require("react-native-haptic-feedback").default;
-  } catch {
-    hapticModule = null;
-  }
-  hasTriedLoading = true;
-
-  return hapticModule;
+export interface HapticOptions {
+  enableVibrateFallback?: boolean;
+  ignoreAndroidSystemSettings?: boolean;
 }
+
+const impactMap: Record<string, Haptics.ImpactFeedbackStyle> = {
+  impactLight: Haptics.ImpactFeedbackStyle.Light,
+  impactMedium: Haptics.ImpactFeedbackStyle.Medium,
+  impactHeavy: Haptics.ImpactFeedbackStyle.Heavy,
+  rigid: Haptics.ImpactFeedbackStyle.Rigid,
+  soft: Haptics.ImpactFeedbackStyle.Soft,
+};
+
+const notificationMap: Record<string, Haptics.NotificationFeedbackType> = {
+  success: Haptics.NotificationFeedbackType.Success,
+  warning: Haptics.NotificationFeedbackType.Warning,
+  error: Haptics.NotificationFeedbackType.Error,
+};
 
 export function triggerHaptic(
   type: HapticType = "impactLight",
-  options: HapticOptions = {}
+  _options: HapticOptions = {}
 ) {
-  const module = getHapticModule();
-  if (!module) return;
-
-  try {
-    module.trigger(type, {
-      enableVibrateFallback: true,
-      ignoreAndroidSystemSettings: false,
-      ...options,
+  if (type === "selection") {
+    Haptics.selectionAsync().catch(() => {
+      // Ignore haptic errors on platforms where haptics are unavailable.
     });
-  } catch {
-    // Ignore haptic errors on platforms where the native module is unavailable.
+    return;
+  }
+
+  const impactStyle = impactMap[type];
+  if (impactStyle) {
+    Haptics.impactAsync(impactStyle).catch(() => {
+      // Ignore haptic errors on platforms where haptics are unavailable.
+    });
+    return;
+  }
+
+  const notificationType = notificationMap[type];
+  if (notificationType) {
+    Haptics.notificationAsync(notificationType).catch(() => {
+      // Ignore haptic errors on platforms where haptics are unavailable.
+    });
   }
 }

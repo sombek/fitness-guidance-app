@@ -42,12 +42,7 @@ function SettingsRow({
         },
       ]}
     >
-      <Text
-        style={[
-          styles.labelStrong,
-          { color: theme.textPrimary },
-        ]}
-      >
+      <Text style={[styles.labelStrong, { color: theme.textPrimary }]}>
         {label}
       </Text>
       {value && (
@@ -91,15 +86,21 @@ export default function SettingsScreen() {
     >
       <VStack style={styles.page}>
         <VStack style={styles.header}>
-          <Text style={[styles.title, { color: theme.textPrimary }]}>
+          <Text
+            style={[
+              styles.title,
+              {
+                color: theme.textPrimary,
+                writingDirection: isRtl ? "rtl" : "ltr",
+              },
+            ]}
+          >
             {t.settings.title}
           </Text>
         </VStack>
 
         <VStack style={styles.section}>
-          <Text
-            style={[styles.labelStrong, { color: theme.actionSecondary }]}
-          >
+          <Text style={[styles.labelStrong, { color: theme.actionSecondary }]}>
             {t.settings.language}
           </Text>
           <VStack
@@ -131,9 +132,7 @@ export default function SettingsScreen() {
         </VStack>
 
         <VStack style={styles.section}>
-          <Text
-            style={[styles.labelStrong, { color: theme.actionSecondary }]}
-          >
+          <Text style={[styles.labelStrong, { color: theme.actionSecondary }]}>
             {t.settings.about}
           </Text>
           <VStack

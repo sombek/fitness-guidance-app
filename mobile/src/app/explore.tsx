@@ -9,11 +9,20 @@ import { useTheme } from "@/hooks/use-theme";
 import { useTranslation } from "@/i18n/use-translation";
 import { Platform, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useCallback, useState } from "react";
 
 import { triggerHaptic } from "@/lib/haptics";
+import YoutubePlayer from "react-native-youtube-iframe";
 
 export default function ExploreScreen() {
   const safeAreaInsets = useSafeAreaInsets();
+  const [playing, setPlaying] = useState(false);
+
+  const onStateChange = useCallback((state: string) => {
+    if (state === "ended") {
+      setPlaying(false);
+    }
+  }, []);
   const theme = useTheme();
   const { t, language } = useTranslation();
   const isRtl = language === "ar";
@@ -312,6 +321,35 @@ export default function ExploreScreen() {
           </VStack>
         </VStack>
 
+        <VStack style={styles.section}>
+          <VStack>
+            <Text
+              style={[styles.labelStrong, { color: theme.actionSecondary }]}
+            >
+              {t.explore.videoTitle}
+            </Text>
+          </VStack>
+
+          <VStack
+            style={[
+              styles.videoCard,
+              {
+                backgroundColor: theme.surfaceRaised,
+                borderColor: theme.borderDefault,
+              },
+            ]}
+          >
+            <YoutubePlayer
+              height={styles.videoPlayer.height}
+              play={playing}
+              videoId={"M7lc1UVf-VE"}
+              onChangeState={onStateChange}
+              webViewStyle={{ borderRadius: Spacing.three, overflow: "hidden" }}
+              initialPlayerParams={{ modestbranding: true }}
+            />
+          </VStack>
+        </VStack>
+
         <HStack
           style={[
             styles.coachNote,
@@ -530,5 +568,13 @@ const styles = StyleSheet.create({
     borderRadius: Spacing.three,
     alignItems: "flex-start",
     gap: Spacing.three,
+  },
+  videoCard: {
+    borderWidth: 1,
+    borderRadius: Spacing.three,
+    overflow: "hidden",
+  },
+  videoPlayer: {
+    height: 220,
   },
 });
