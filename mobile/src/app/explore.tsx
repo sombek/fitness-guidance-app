@@ -10,6 +10,8 @@ import { useTranslation } from "@/i18n/use-translation";
 import { Platform, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import { triggerHaptic } from "@/lib/haptics";
+
 export default function ExploreScreen() {
   const safeAreaInsets = useSafeAreaInsets();
   const theme = useTheme();
@@ -153,6 +155,7 @@ export default function ExploreScreen() {
           <Pressable
             accessibilityRole="button"
             accessibilityLabel={t.explore.startSession}
+            onPressIn={() => triggerHaptic("impactMedium")}
             style={({ pressed }) => [
               styles.primaryButton,
               {
@@ -204,6 +207,7 @@ export default function ExploreScreen() {
                 key={item.title}
                 accessibilityRole="button"
                 accessibilityLabel={`${item.title}, ${item.detail}`}
+                onPressIn={() => triggerHaptic("impactLight")}
                 style={({ pressed }) => [
                   styles.listRow,
                   {
@@ -265,6 +269,7 @@ export default function ExploreScreen() {
                 key={item.title}
                 accessibilityRole="button"
                 accessibilityLabel={item.title}
+                onPressIn={() => triggerHaptic("impactLight")}
                 style={({ pressed }) => pressed && styles.pressed}
               >
                 <HStack
