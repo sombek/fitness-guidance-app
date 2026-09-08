@@ -1,5 +1,3 @@
-import { Box } from "../../components/ui/box";
-import { HStack } from "../../components/ui/hstack";
 import { Pressable } from "../../components/ui/pressable";
 import { ScrollView } from "../../components/ui/scroll-view";
 import { Text } from "../../components/ui/text";
@@ -65,7 +63,7 @@ export default function SettingsScreen() {
   const safeAreaInsets = useSafeAreaInsets();
   const theme = useTheme();
   const { t, language } = useTranslation();
-  const { setLanguage, toggleLanguage } = useLanguage();
+  const { setLanguage } = useLanguage();
   const isRtl = language === "ar";
 
   const insets = {
@@ -191,7 +189,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     lineHeight: 38,
     fontWeight: "700",
-    writingDirection: "rtl",
   },
   body: {
     fontSize: 16,
@@ -255,7 +252,6 @@ const styles = StyleSheet.create({
     fontSize: 26,
     lineHeight: 36,
     fontWeight: "700",
-    writingDirection: "rtl",
   },
   progressGroup: {
     gap: Spacing.two,

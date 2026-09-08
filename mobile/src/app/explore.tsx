@@ -63,9 +63,6 @@ export default function ExploreScreen() {
     >
       <VStack style={styles.page}>
         <VStack style={styles.header}>
-          <Text style={[styles.eyebrow, { color: theme.actionSecondary }]}>
-            {t.explore.eyebrow}
-          </Text>
           <Text style={[styles.title, { color: theme.textPrimary }]}>
             {t.explore.greeting}
           </Text>
@@ -136,14 +133,14 @@ export default function ExploreScreen() {
               />
             </Box>
             <HStack style={styles.successRow}>
-              <Text aria-hidden style={[styles.statusIcon, { color: theme.success }]}>
+              <Text
+                aria-hidden
+                style={[styles.statusIcon, { color: theme.success }]}
+              >
                 ✓
               </Text>
               <Text
-                style={[
-                  styles.successLabel,
-                  { color: theme.textSecondary },
-                ]}
+                style={[styles.successLabel, { color: theme.textSecondary }]}
               >
                 {t.explore.readyToComplete}
               </Text>
@@ -167,13 +164,14 @@ export default function ExploreScreen() {
               pressed && styles.pressed,
             ]}
           >
-            <Text
-              style={[styles.buttonLabel, { color: theme.textInverse }]}
-            >
+            <Text style={[styles.buttonLabel, { color: theme.textInverse }]}>
               {t.explore.startSession}
             </Text>
-            <Text aria-hidden style={[styles.arrow, { color: theme.textInverse }]}>
-              {isRtl ? "→" : "←"}
+            <Text
+              aria-hidden
+              style={[styles.arrow, { color: theme.textInverse }]}
+            >
+              {isRtl ? "←" : "→"}
             </Text>
           </Pressable>
         </VStack>
@@ -288,14 +286,20 @@ export default function ExploreScreen() {
                     <Text
                       style={[
                         styles.labelStrong,
-                        { color: theme.textPrimary, textAlign: isRtl ? "right" : "left" },
+                        {
+                          color: theme.textPrimary,
+                          textAlign: isRtl ? "right" : "left",
+                        },
                       ]}
                     >
                       {item.title}
                     </Text>
                   </VStack>
-                  <Text aria-hidden style={[styles.arrow, { color: theme.textMuted }]}>
-                    {isRtl ? "→" : "←"}
+                  <Text
+                    aria-hidden
+                    style={[styles.arrow, { color: theme.textMuted }]}
+                  >
+                    {isRtl ? "←" : "→"}
                   </Text>
                 </HStack>
               </Pressable>
@@ -319,7 +323,15 @@ export default function ExploreScreen() {
             i
           </Text>
           <VStack style={styles.flex}>
-            <Text style={[styles.labelStrong, { color: theme.textPrimary, textAlign: isRtl ? "right" : "left" }]}>
+            <Text
+              style={[
+                styles.labelStrong,
+                {
+                  color: theme.textPrimary,
+                  textAlign: isRtl ? "right" : "left",
+                },
+              ]}
+            >
               {t.explore.coachNoteTitle}
             </Text>
             <Text style={[styles.caption, { color: theme.textSecondary }]}>
@@ -359,10 +371,9 @@ const styles = StyleSheet.create({
     letterSpacing: 0.6,
   },
   title: {
-    fontSize: 30,
-    lineHeight: 38,
+    fontSize: 48,
+    lineHeight: 60,
     fontWeight: "700",
-    writingDirection: "rtl",
   },
   body: {
     fontSize: 16,
@@ -426,7 +437,6 @@ const styles = StyleSheet.create({
     fontSize: 26,
     lineHeight: 36,
     fontWeight: "700",
-    writingDirection: "rtl",
   },
   progressGroup: {
     gap: Spacing.two,

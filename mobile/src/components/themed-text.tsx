@@ -1,20 +1,25 @@
 import { Platform, StyleSheet, Text, type TextProps } from 'react-native';
 
 import { Fonts, ThemeColor } from '@/constants/theme';
+import { useTranslation } from '@/i18n/use-translation';
 import { useTheme } from '@/hooks/use-theme';
 
 export type ThemedTextProps = TextProps & {
   type?: 'default' | 'title' | 'small' | 'smallBold' | 'subtitle' | 'link' | 'linkPrimary' | 'code';
   themeColor?: ThemeColor;
+  writingDirection?: 'rtl' | 'ltr';
 };
 
-export function ThemedText({ style, type = 'default', themeColor, ...rest }: ThemedTextProps) {
+export function ThemedText({ style, type = 'default', themeColor, writingDirection, ...rest }: ThemedTextProps) {
   const theme = useTheme();
+  const { language } = useTranslation();
+  const isRtl = language === 'ar';
 
   return (
     <Text
       style={[
         { color: theme[themeColor ?? 'textPrimary'] },
+        { writingDirection: writingDirection ?? (isRtl ? 'rtl' : 'ltr') },
         type === 'default' && styles.default,
         type === 'title' && styles.title,
         type === 'small' && styles.small,
