@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sprint 2 — Stabilization & Growth</title>
+<style>
+@page { size: A4; margin: 15mm 18mm; }
+* { box-sizing: border-box; }
+body { margin: 0; color: #202e38; font: 10.5pt/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; text-align: left; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+header { border-bottom: 2px solid #235b61; padding-bottom: 12px; margin-bottom: 14px; }
+h1 { font-size: 20pt; line-height: 1.35; margin: 0 0 12px; color: #163f44; font-weight: 700; }
+.subtitle { font-size: 11pt; color: #465760; margin: 4px 0 0; font-weight: 400; }
+blockquote { margin: 0 0 8px; padding: 8px 12px; background: #f5f9f9; border-left: 3px solid #235b61; color: #465760; font-size: 10pt; }
+blockquote strong { color: #163f44; }
+hr { border: none; border-top: 1px solid #cedadb; margin: 12px 0; }
+h2 { font-size: 11.5pt; margin: 10px 0 5px; color: #163f44; break-after: avoid; font-weight: 700; }
+h3 { font-size: 10.5pt; margin: 8px 0 4px; color: #235b61; font-weight: 600; }
+p { margin: 5px 0; }
+ul, ol { margin: 4px 0; padding-left: 18px; }
+li { margin: 2px 0; }
+table { width: 100%; border-collapse: collapse; table-layout: auto; font-size: 10pt; margin: 6px 0; break-inside: avoid; }
+th { background: #f1f6f6; font-weight: 700; padding: 7px 10px; text-align: left; border: 1px solid #cedadb; color: #163f44; }
+td { padding: 8px 10px; border: 1px solid #cedadb; }
+tr:nth-child(even) td { background: #fafbfb; }
+.feature { color: #235b61; font-weight: 600; }
+.priority { color: #7a8a8f; font-size: 9.5pt; font-weight: 500; }
+section { break-inside: avoid; margin-bottom: 12px; }
+.accept { background: #f9fbfb; border-left: 3px solid #235b61; padding: 6px 10px; margin: 4px 0; font-size: 10pt; }
+.accept li { margin: 3px 0; }
+@media screen {
+  html { background: #e9edef; }
+  body { background: white; max-width: 210mm; min-height: 297mm; margin: 24px auto; padding: 15mm 18mm; box-shadow: 0 2px 15px #0001; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Sprint 2 — Stabilization & Growth</h1>
+  <div class="subtitle">Enhance core features, migrate data catalogs, and implement AI capabilities</div>
+</header>
+
+<blockquote>
+<strong>Goal:</strong> Build on Sprint 1 by stabilizing the platform, migrating Excel-based food and workout catalogs, implementing offline support, and adding intelligent food image recognition to accelerate meal logging.
+</blockquote>
+
+<hr>
+
+<section>
+<h2>1. Stabilization & Fixes</h2>
+
+<p>Apply fixes and refinements identified during Sprint 1 based on testing and user feedback. This includes performance optimization, UI/UX improvements, and bug fixes.</p>
+
+<strong>Acceptance criteria</strong>
+<ul class="accept">
+<li>All high-priority bugs from Sprint 1 are resolved.</li>
+<li>UI performance is smooth across target mobile devices.</li>
+<li>User feedback from Sprint 1 review is incorporated into design iterations.</li>
+</ul>
+</section>
+
+<section>
+<h2>2. Data Migration: Food & Workout Catalogs</h2>
+
+<h3>2.1 Food Catalog</h3>
+<table>
+<thead>
+<tr><th>Feature</th><th>Description</th><th>Priority</th></tr>
+</thead>
+<tbody>
+<tr><td class="feature">Import food data</td><td>Migrate food items, macros, and categories from Excel into the database.</td><td class="priority">P0</td></tr>
+<tr><td class="feature">Search & filter foods</td><td>Coach can quickly find and assign foods to meal plans.</td><td class="priority">P0</td></tr>
+</tbody>
+</table>
+
+<strong>Acceptance criteria</strong>
+<ul class="accept">
+<li>All food items from the Excel catalog are imported with names, macros, and categories.</li>
+<li>Coach can search by name, category, or macros.</li>
+<li>Food items are editable and new items can be added in the app.</li>
+</ul>
+
+<h3>2.2 Workout Catalog</h3>
+<table>
+<thead>
+<tr><th>Feature</th><th>Description</th><th>Priority</th></tr>
+</thead>
+<tbody>
+<tr><td class="feature">Import workout data</td><td>Migrate exercises and programs from Excel into the database.</td><td class="priority">P0</td></tr>
+<tr><td class="feature">Search & filter workouts</td><td>Coach can quickly find and assign exercises to training plans.</td><td class="priority">P0</td></tr>
+</tbody>
+</table>
+
+<strong>Acceptance criteria</strong>
+<ul class="accept">
+<li>All exercises from the Excel catalog are imported with names, descriptions, and categories.</li>
+<li>Coach can search by name, category, or muscle group.</li>
+<li>Exercises are editable and new exercises can be added in the app.</li>
+</ul>
+</section>
+
+<section>
+<h2>3. Mobile Enhancement: Food Image Recognition</h2>
+
+<h3>3.1 Image Capture & Recognition</h3>
+<table>
+<thead>
+<tr><th>Feature</th><th>Description</th><th>Priority</th></tr>
+</thead>
+<tbody>
+<tr><td class="feature">Capture meal photo</td><td>Client can photograph a meal within the app.</td><td class="priority">P0</td></tr>
+<tr><td class="feature">Identify food items</td><td>AI analyzes the photo to detect food items and estimate macros.</td><td class="priority">P0</td></tr>
+<tr><td class="feature">Confirm & adjust</td><td>Client reviews AI results and can manually adjust portions/macros if needed.</td><td class="priority">P1</td></tr>
+</tbody>
+</table>
+
+<strong>Acceptance criteria</strong>
+<ul class="accept">
+<li>Camera integration works on both iOS and Android.</li>
+<li>Image is sent to AI service for analysis (e.g., vision API).</li>
+<li>AI returns detected food items with calorie/macro estimates.</li>
+<li>Client can confirm and save the meal, or edit detected items and portions.</li>
+<li>Meal is recorded with detected macros and a reference to the photo.</li>
+</ul>
+</section>
+
+<section>
+<h2>4. Offline Support</h2>
+
+<h3>4.1 Offline-First Architecture</h3>
+<table>
+<thead>
+<tr><th>Feature</th><th>Description</th><th>Priority</th></tr>
+</thead>
+<tbody>
+<tr><td class="feature">Offline data sync</td><td>Clients can record meals and training sessions offline; data syncs when online.</td><td class="priority">P0</td></tr>
+</tbody>
+</table>
+
+<strong>Acceptance criteria</strong>
+<ul class="accept">
+<li>Clients can submit meals, training, and progress forms even without internet.</li>
+<li>Local changes are queued and synced automatically when connectivity is restored.</li>
+<li>Conflict resolution is handled gracefully (e.g., coach edits during offline period).</li>
+<li>User is informed of sync status and any unresolved conflicts.</li>
+</ul>
+</section>
+
+<section>
+<h2>5. Coach Features: Enhanced Review & Notifications</h2>
+
+<h3>5.1 Advanced Progress Analytics</h3>
+<table>
+<thead>
+<tr><th>Feature</th><th>Description</th><th>Priority</th></tr>
+</thead>
+<tbody>
+<tr><td class="feature">Coach notifications</td><td>Coach receives alerts for important client events (missed sessions, significant progress changes).</td><td class="priority">P1</td></tr>
+<tr><td class="feature">Client notifications</td><td>Client receives reminders for upcoming meals/training and feedback from coach.</td><td class="priority">P1</td></tr>
+</tbody>
+</table>
+
+<strong>Acceptance criteria</strong>
+<ul class="accept">
+<li>Coach can configure notification preferences (email, push).</li>
+<li>Notifications include actionable context (client name, what triggered it).</li>
+<li>Client can opt in/out of notification types.</li>
+</ul>
+</section>
+
+<section>
+<h2>6. Technical & Operational Considerations</h2>
+
+<table>
+<thead>
+<tr><th>Area</th><th>Considerations</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Data Migration</strong></td><td>Plan backward compatibility; test sync between old (seed) and new (Excel) data models.</td></tr>
+<tr><td><strong>Image Recognition Integration</strong></td><td>Evaluate vision APIs (Google Vision, Azure Computer Vision, or similar). Handle rate limits and costs.</td></tr>
+<tr><td><strong>Offline Sync</strong></td><td>Use local storage (SQLite, Realm, or similar) and implement conflict resolution strategy.</td></tr>
+<tr><td><strong>Notifications</strong></td><td>Implement push notification service; coordinate with backend for event triggers.</td></tr>
+<tr><td><strong>Security & Compliance</strong></td><td>Ensure offline data is encrypted at rest; validate image privacy and retention policies.</td></tr>
+</tbody>
+</table>
+</section>
+
+</body>
+</html>

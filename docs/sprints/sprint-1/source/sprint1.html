@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sprint 1 — Phase 1 Scope</title>
+<style>
+@page { size: A4; margin: 15mm 18mm; }
+* { box-sizing: border-box; }
+body { margin: 0; color: #202e38; font: 10.5pt/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; text-align: left; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+header { border-bottom: 2px solid #235b61; padding-bottom: 8px; margin-bottom: 8px; }
+h1 { font-size: 20pt; line-height: 1.3; margin: 0 0 6px; color: #163f44; font-weight: 700; }
+.subtitle { font-size: 11pt; color: #465760; margin: 2px 0 0; font-weight: 400; }
+blockquote { margin: -2px 0 2px; padding: 8px 12px; background: #f5f9f9; border-left: 3px solid #235b61; color: #465760; font-size: 10pt; }
+blockquote strong { color: #163f44; }
+hr { border: none; border-top: 1px solid #cedadb; margin: 6px 0; }
+h2 { font-size: 11.5pt; margin: 8px 0 4px; color: #163f44; break-after: avoid; font-weight: 700; }
+h3 { font-size: 10.5pt; margin: 6px 0 3px; color: #235b61; font-weight: 600; }
+p { margin: 3px 0; }
+ul, ol { margin: 2px 0; padding-left: 18px; }
+li { margin: 1px 0; }
+table { width: 100%; border-collapse: collapse; table-layout: auto; font-size: 10pt; margin: 4px 0; break-inside: avoid; }
+th { background: #f1f6f6; font-weight: 700; padding: 7px 10px; text-align: left; border: 1px solid #cedadb; color: #163f44; }
+td { padding: 8px 10px; border: 1px solid #cedadb; }
+tr:nth-child(even) td { background: #fafbfb; }
+.feature { color: #235b61; font-weight: 600; }
+.priority { color: #7a8a8f; font-size: 9.5pt; font-weight: 500; }
+section { margin-bottom: 8px; }
+.accept { background: #f9fbfb; border-left: 3px solid #235b61; padding: 4px 8px; margin: 2px 0; font-size: 10pt; }
+.accept li { margin: 3px 0; }
+@media screen {
+  html { background: #e9edef; }
+  body { background: white; max-width: 210mm; min-height: 297mm; margin: 24px auto; padding: 15mm 18mm; box-shadow: 0 2px 15px #0001; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Sprint 1 — Phase 1 Scope</h1>
+  <div class="subtitle">Deliver the core client/coach loop for fitness guidance</div>
+</header>
+
+<blockquote>
+<strong>Goal:</strong> Deliver the core client/coach loop for fitness guidance: clients can log in, follow meal and training plans, and submit progress; coaches can invite clients, create plans, and review progress.
+</blockquote>
+
+<section>
+<h2>1. Mobile (Client)</h2>
+
+<h3>1.1 Users</h3>
+<table>
+<thead>
+<tr><th>Feature</th><th>Description</th><th>Priority</th></tr>
+</thead>
+<tbody>
+<tr><td class="feature">Login</td><td>Authenticate into the mobile app using passwordless email sign-in.</td><td class="priority">P0</td></tr>
+</tbody>
+</table>
+
+<strong>Acceptance criteria</strong>
+<ul class="accept">
+<li>Client can request a magic link or one-time password (OTP) using their email address.</li>
+<li>Successful login redirects to the app home/dashboard.</li>
+<li>Session/token is persisted across app restarts (where secure).</li>
+</ul>
+
+<h3>1.2 Food</h3>
+<table>
+<thead>
+<tr><th>Feature</th><th>Description</th><th>Priority</th></tr>
+</thead>
+<tbody>
+<tr><td class="feature">View meal plan</td><td>Display the current meal plan assigned by the coach.</td><td class="priority">P0</td></tr>
+<tr><td class="feature">Record meals</td><td>Allow the client to log the meals they have eaten.</td><td class="priority">P0</td></tr>
+<tr><td class="feature">View meal history</td><td>Show a history of previously recorded meals.</td><td class="priority">P1</td></tr>
+</tbody>
+</table>
+
+<strong>Acceptance criteria</strong>
+<ul class="accept">
+<li>Meal plan is visible per day/week with meal type (breakfast, lunch, dinner, snack).</li>
+<li>Client can mark meals as eaten, skipped, or partially eaten.</li>
+<li>Recorded meals include timestamp.</li>
+<li>Meal history is showing as list.</li>
+</ul>
+
+<h3>1.3 Training</h3>
+<table>
+<thead>
+<tr><th>Feature</th><th>Description</th><th>Priority</th></tr>
+</thead>
+<tbody>
+<tr><td class="feature">View training schedule</td><td>Display the client's assigned training schedule.</td><td class="priority">P0</td></tr>
+<tr><td class="feature">Record training sessions</td><td>Allow the client to log completed training sessions.</td><td class="priority">P0</td></tr>
+<tr><td class="feature">View training history</td><td>Show a history of recorded training sessions.</td><td class="priority">P1</td></tr>
+</tbody>
+</table>
+
+<strong>Acceptance criteria</strong>
+<ul class="accept">
+<li>Training schedule lists exercises.</li>
+<li>Client can start a session, mark exercises complete, and add results (weight, reps).</li>
+<li>Completed sessions are saved with date/time and duration.</li>
+<li>Training history is showing as list.</li>
+</ul>
+
+<h3>1.4 Progress</h3>
+<table>
+<thead>
+<tr><th>Feature</th><th>Description</th><th>Priority</th></tr>
+</thead>
+<tbody>
+<tr><td class="feature">Record progress form</td><td>Submit a progress form (weight, measurements, notes).</td><td class="priority">P0</td></tr>
+<tr><td class="feature">View progress history</td><td>Display previously submitted progress forms and trends.</td><td class="priority">P1</td></tr>
+</tbody>
+</table>
+
+<strong>Acceptance criteria</strong>
+<ul class="accept">
+<li>Progress form includes weight, body measurements, and subjective notes.</li>
+<li>Client can submit progress forms on a daily basis with no submission limit.</li>
+<li>History shows entries in a timeline view with basic trend indicators.</li>
+<li>No restrictions on submission frequency (unlimited submissions allowed).</li>
+</ul>
+</section>
+
+<section>
+<h2>2. Web (Coach)</h2>
+
+<h3>2.1 Users</h3>
+<table>
+<thead>
+<tr><th>Feature</th><th>Description</th><th>Priority</th></tr>
+</thead>
+<tbody>
+<tr><td class="feature">Coach login</td><td>Authenticate into the coach web app using passwordless email sign-in.</td><td class="priority">P0</td></tr>
+<tr><td class="feature">Invite clients</td><td>Send invitations for clients to join the platform.</td><td class="priority">P0</td></tr>
+</tbody>
+</table>
+
+<strong>Acceptance criteria — Coach login</strong>
+<ul class="accept">
+<li>Coach can request a magic link or one-time password (OTP) using their email address.</li>
+<li>Invalid email addresses, expired links, and invalid OTPs show a clear error message.</li>
+<li>Coach can complete sign-in through the emailed magic link or OTP without a password.</li>
+<li>Successful login redirects to the coach dashboard.</li>
+<li>Session/token is persisted securely across browser sessions.</li>
+</ul>
+
+<strong>Acceptance criteria — Invite clients</strong>
+<ul class="accept">
+<li>Coach can send an invite by email.</li>
+<li>Invited client receives a signup/activation link.</li>
+<li>Coach sees the invite status (pending, accepted, expired).</li>
+</ul>
+
+<h3>2.2 Food</h3>
+<table>
+<thead>
+<tr><th>Feature</th><th>Description</th><th>Priority</th></tr>
+</thead>
+<tbody>
+<tr><td class="feature">Plan meals</td><td>Create and assign meal plans to clients.</td><td class="priority">P0</td></tr>
+<tr><td class="feature">Review meals progress</td><td>Review what clients have logged against the meal plan.</td><td class="priority">P1</td></tr>
+</tbody>
+</table>
+
+<strong>Acceptance criteria</strong>
+<ul class="accept">
+<li>Coach can build meal plans with days, meal types, food items, quantities, and macros.</li>
+<li>Meal plans can be assigned to one or more clients.</li>
+<li>Review screen highlights compliance (completed, skipped, unlogged).</li>
+</ul>
+
+<h3>2.3 Training</h3>
+<table>
+<thead>
+<tr><th>Feature</th><th>Description</th><th>Priority</th></tr>
+</thead>
+<tbody>
+<tr><td class="feature">Plan training</td><td>Create and assign training programs/schedules to clients.</td><td class="priority">P0</td></tr>
+<tr><td class="feature">Review training sessions</td><td>Review client-submitted training sessions.</td><td class="priority">P1</td></tr>
+</tbody>
+</table>
+
+<strong>Acceptance criteria</strong>
+<ul class="accept">
+<li>Coach can create training plans with workouts, exercises, sets/reps, and notes.</li>
+<li>Plans can be assigned to clients with start dates.</li>
+<li>Review screen shows session completion, results, and client notes.</li>
+</ul>
+
+<h3>2.4 Progress</h3>
+<table>
+<thead>
+<tr><th>Feature</th><th>Description</th><th>Priority</th></tr>
+</thead>
+<tbody>
+<tr><td class="feature">Review clients' progress</td><td>View submitted progress forms and trends per client.</td><td class="priority">P1</td></tr>
+</tbody>
+</table>
+
+<strong>Acceptance criteria</strong>
+<ul class="accept">
+<li>Coach can view all progress forms for a selected client.</li>
+<li>Dashboard shows key trends (weight change, measurement changes over time).</li>
+<li>Progress form values are viewable in the selected client's timeline.</li>
+</ul>
+</section>
+
+<section>
+<h2>3. Technical Considerations</h2>
+<table>
+<thead>
+<tr><th>Area</th><th>Considerations</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Authentication & Authorization</strong></td><td>Separate roles for client and coach; protect endpoints by role.</td></tr>
+<tr><td><strong>Data Model</strong></td><td>Users, meal plans, meal logs, training plans, training sessions, progress forms, invites.</td></tr>
+<tr><td><strong>Food & Workout Catalogs</strong></td><td>Use dummy seed data for food and workout catalogs during development. Do not add or migrate the Excel-based databases in Sprint 1; complete the Excel migration in Sprint 2.</td></tr>
+<tr><td><strong>Audit & History</strong></td><td>Every recorded entry must have a created/updated timestamp and created-by reference.</td></tr>
+</tbody>
+</table>
+</section>
+
+</body>
+</html>

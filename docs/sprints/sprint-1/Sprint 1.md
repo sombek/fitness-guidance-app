@@ -10,11 +10,12 @@
 
 | Feature | Description | Priority |
 |---------|-------------|----------|
-| Login | Authenticate into the mobile app with secure credentials. | P0 |
+| Login | Authenticate into the mobile app using passwordless email sign-in. | P0 |
 
 **Acceptance criteria**
-- Client can log in with email/username and password.
-- Invalid credentials show a clear error message.
+- Client can request a magic link or one-time password (OTP) using their email address.
+
+
 - Successful login redirects to the app home/dashboard.
 - Session/token is persisted across app restarts (where secure).
 
@@ -31,9 +32,8 @@
 **Acceptance criteria**
 - Meal plan is visible per day/week with meal type (breakfast, lunch, dinner, snack).
 - Client can mark meals as eaten, skipped, or partially eaten.
-- Recorded meals include timestamp and optional notes/photo.
-- Meal history is filterable by date range.
-
+- Recorded meals include timestamp.
+- Meal history is showing as list
 ---
 
 ### 1.3 Training
@@ -45,10 +45,10 @@
 | View training history | Show a history of recorded training sessions. | P1 |
 
 **Acceptance criteria**
-- Training schedule lists exercises, sets, reps, and rest times.
-- Client can start a session, mark exercises complete, and add results (weight, reps, duration, RPE).
+- Training schedule lists exercises
+- Client can start a session, mark exercises complete, and add results (weight, reps).
 - Completed sessions are saved with date/time and duration.
-- Training history is filterable by date range and exercise.
+- Training history is showing as list
 
 ---
 
@@ -56,13 +56,14 @@
 
 | Feature | Description | Priority |
 |---------|-------------|----------|
-| Record progress form | Submit a periodic progress form (weight, measurements, photos, notes). | P0 |
+| Record progress form | Submit a progress form (weight, measurements, notes). | P0 |
 | View progress history | Display previously submitted progress forms and trends. | P1 |
 
 **Acceptance criteria**
-- Progress form includes weight, body measurements, progress photos, and subjective notes.
-- Client can submit a new form only within the allowed cadence (e.g., once per week).
+- Progress form includes weight, body measurements, and subjective notes.
+- Client can submit progress forms on a daily basis with no submission limit.
 - History shows entries in a timeline view with basic trend indicators.
+- No restrictions on submission frequency (unlimited submissions allowed).
 
 ---
 
@@ -72,12 +73,13 @@
 
 | Feature | Description | Priority |
 |---------|-------------|----------|
-| Coach login | Authenticate into the coach web app with secure credentials. | P0 |
+| Coach login | Authenticate into the coach web app using passwordless email sign-in. | P0 |
 | Invite clients | Send invitations for clients to join the platform. | P0 |
 
 **Acceptance criteria — Coach login**
-- Coach can log in with email/username and password.
-- Invalid credentials show a clear error message.
+- Coach can request a magic link or one-time password (OTP) using their email address.
+- Invalid email addresses, expired links, and invalid OTPs show a clear error message.
+- Coach can complete sign-in through the emailed magic link or OTP without a password.
 - Successful login redirects to the coach dashboard.
 - Session/token is persisted securely across browser sessions.
 
@@ -125,27 +127,15 @@
 **Acceptance criteria**
 - Coach can view all progress forms for a selected client.
 - Dashboard shows key trends (weight change, measurement changes over time).
-- Progress photos are viewable in a gallery/timeline.
+- Progress form values are viewable in the selected client's timeline.
 
 ---
 
-## 3. Cross-Cutting Concerns
+## 3. Technical Considerations
 
 | Area | Considerations |
 |------|----------------|
 | **Authentication & Authorization** | Separate roles for client and coach; protect endpoints by role. |
 | **Data Model** | Users, meal plans, meal logs, training plans, training sessions, progress forms, invites. |
-| **Notifications** | Notify clients when a new plan is assigned; remind to log meals/sessions. |
-| **Offline Support** | Allow clients to record meals/sessions offline and sync when online. |
+| **Food & Workout Catalogs** | Use dummy seed data for food and workout catalogs during development. Do not add or migrate the Excel-based databases in Sprint 1; complete the Excel migration in Sprint 2. |
 | **Audit & History** | Every recorded entry must have a created/updated timestamp and created-by reference. |
-
----
-
-## 4. Definition of Done
-
-- [ ] Feature is implemented for both mobile (client) and web (coach) where applicable.
-- [ ] Unit and integration tests pass.
-- [ ] UI matches approved designs or wireframes.
-- [ ] API endpoints are documented.
-- [ ] Security review for authentication/authorization paths.
-- [ ] Smoke-tested on target devices/browsers.
